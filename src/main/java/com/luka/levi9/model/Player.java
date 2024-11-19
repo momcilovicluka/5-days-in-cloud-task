@@ -28,4 +28,6 @@ public class Player {
 	private int losses;
 	private int elo;
 	private int hoursPlayed;
+	@ManyToOne
+	private Team team;
 }

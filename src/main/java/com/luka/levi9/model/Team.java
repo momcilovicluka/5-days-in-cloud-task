@@ -26,4 +26,7 @@ public class Team {
 
 	private String teamName;
 
+	@OneToMany
+	@JoinColumn(name = "Player_id")
+	private List<Player> players;
 }
