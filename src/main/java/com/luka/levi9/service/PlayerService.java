@@ -20,6 +20,7 @@ public class PlayerService {
 	}
 
 	public Player getPlayer(String id) {
-		return playerRepository.findById(id).orElseThrow(() -> new PlayerNotFoundException(id));
+		return playerRepository.findById(id)
+				.orElseThrow(() -> new PlayerNotFoundException("Player with id " + id + " not found."));
 	}
 }
