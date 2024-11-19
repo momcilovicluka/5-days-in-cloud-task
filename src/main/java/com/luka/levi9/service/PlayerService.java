@@ -2,6 +2,7 @@ package com.luka.levi9.service;
 
 import org.springframework.stereotype.Service;
 
+import com.luka.levi9.exception.PlayerAlreadyExistsException;
 import com.luka.levi9.exception.PlayerNotFoundException;
 import com.luka.levi9.model.Player;
 import com.luka.levi9.repository.PlayerRepository;
@@ -16,6 +17,9 @@ public class PlayerService {
 	}
 
 	public Player createPlayer(Player player) {
+		if (playerRepository.findByNickname(player.getNickname()).isPresent())
+			throw new PlayerAlreadyExistsException("Player with nickname " + player.getNickname() + " already exists.");
+
 		return playerRepository.save(player);
 	}
 
