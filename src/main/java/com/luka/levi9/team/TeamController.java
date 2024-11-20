@@ -1,5 +1,4 @@
-package com.luka.levi9.controller;
-
+package com.luka.levi9.team;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,26 +7,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luka.levi9.model.Player;
-import com.luka.levi9.service.PlayerService;
-
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/players")
-public class PlayerController {
+@RequestMapping("/teams")
+public class TeamController {
 
-	private final PlayerService playerService;
-	
+	private final TeamService teamService;
 
-	@PostMapping("/create")
-	public Player createPlayer(@RequestBody Player player) {
-		return playerService.createPlayer(player);
+	@PostMapping()
+	public Team createTeam(@RequestBody TeamCreationRequest request) {
+		return teamService.createTeam(request);
 	}
 
 	@GetMapping("/{id}")
-	public Player getPlayer(@PathVariable String id) {
-		return playerService.getPlayer(id);
+	public Team getTeam(@PathVariable String id) {
+		return teamService.getTeam(id);
 	}
+
 }
