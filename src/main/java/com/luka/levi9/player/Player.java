@@ -36,7 +36,7 @@ public class Player {
 	private int losses;
 	private double elo;
 	private int hoursPlayed;
-	private int ratingAdjustment;
+	private int ratingAdjustment = 50;
 	@ManyToOne
 	@JsonIgnore
 	private Team team;
