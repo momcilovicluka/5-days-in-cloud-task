@@ -1,4 +1,4 @@
-package com.luka.levi9.controller;
+package com.luka.levi9.team;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.luka.levi9.dto.TeamCreationRequest;
-import com.luka.levi9.model.Team;
-import com.luka.levi9.service.TeamService;
 
 import lombok.AllArgsConstructor;
 

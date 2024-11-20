@@ -1,4 +1,4 @@
-package com.luka.levi9.exception;
+package com.luka.levi9.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
