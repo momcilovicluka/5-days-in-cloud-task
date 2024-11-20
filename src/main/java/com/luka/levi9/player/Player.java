@@ -4,6 +4,7 @@ import org.hibernate.annotations.NamedQuery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.luka.levi9.match.Match;
 import com.luka.levi9.team.Team;
 
 import jakarta.persistence.Column;
@@ -33,8 +34,9 @@ public class Player {
 	private String nickname;
 	private int wins;
 	private int losses;
-	private int elo;
+	private double elo;
 	private int hoursPlayed;
+	private int ratingAdjustment;
 	@ManyToOne
 	@JsonIgnore
 	private Team team;
@@ -42,5 +44,50 @@ public class Player {
 	@JsonProperty("teamId")
 	public String getTeamId() {
 		return team != null ? team.getId() : null;
+	}
+
+	public void updateStats(Match match) {
+		this.hoursPlayed += match.getDuration();
+
+		this.ratingAdjustment = calculateAdjustmentConstant();
+
+		if (match.getWinningTeam().equals(this.getTeam()))
+			this.wins++;
+		else
+			this.losses++;
+
+		updateElo(match.getWinningTeam(), match.getOpponentTeam(this.getTeam()));
+	}
+
+	private void updateElo(Team winningTeam, Team opponentTeam) {
+		double matchOutcomeCoefficient = calculateMatchOutcomeCoefficient(winningTeam);
+		double expectedElo = calculateExpectedELO(opponentTeam);
+		this.elo += ratingAdjustment * (matchOutcomeCoefficient - expectedElo);
+	}
+
+	private double calculateExpectedELO(Team opposingTeam) {
+		double opposingTeamAverageElo = opposingTeam.getAverageElo();
+
+		return 1 / (1 + Math.pow(10, (opposingTeamAverageElo - this.elo) / 400));
+	}
+
+	private double calculateMatchOutcomeCoefficient(Team winningTeam) {
+		if (winningTeam == null)
+			return 0.5;
+		if (winningTeam.equals(this.getTeam()))
+			return 1.0;
+		return 0.0;
+	}
+
+	private int calculateAdjustmentConstant() {
+		if (hoursPlayed < 500)
+			return 50;
+		if (hoursPlayed < 1000)
+			return 40;
+		if (hoursPlayed < 3000)
+			return 30;
+		if (hoursPlayed < 5000)
+			return 20;
+		return 10;
 	}
 }
