@@ -6,6 +6,7 @@ import com.luka.levi9.player.Player;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +29,11 @@ public class Team {
 
 	private String teamName;
 
-	@OneToMany
 	@JoinColumn(name = "Player_id")
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Player> players;
+
+	public double getAverageElo() {
+		return players.stream().mapToDouble(Player::getElo).average().orElse(0);
+	}
 }
