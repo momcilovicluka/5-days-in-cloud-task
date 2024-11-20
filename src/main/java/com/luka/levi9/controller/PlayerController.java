@@ -1,5 +1,6 @@
 package com.luka.levi9.controller;
 
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.luka.levi9.model.Player;
 import com.luka.levi9.service.PlayerService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
+@AllArgsConstructor
 @RequestMapping("/players")
 public class PlayerController {
 
 	private final PlayerService playerService;
-
-	public PlayerController(PlayerService playerService) {
-		this.playerService = playerService;
-	}
+	
 
 	@PostMapping("/create")
 	public Player createPlayer(@RequestBody Player player) {
