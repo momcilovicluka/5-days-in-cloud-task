@@ -1,5 +1,7 @@
 package com.luka.levi9.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +25,9 @@ public class TeamController {
 		return teamService.createTeam(request);
 	}
 
+	@GetMapping("/{id}")
+	public Team getTeam(@PathVariable String id) {
+		return teamService.getTeam(id);
 	}
+
 }
