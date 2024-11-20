@@ -1,6 +1,8 @@
-package com.luka.levi9.model;
+package com.luka.levi9.team;
 
 import java.util.List;
+
+import com.luka.levi9.player.Player;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

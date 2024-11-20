@@ -1,4 +1,4 @@
-package com.luka.levi9.dto;
+package com.luka.levi9.team;
 
 import java.util.List;
 
