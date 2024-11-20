@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luka.levi9.dto.TeamCreationRequest;
+import com.luka.levi9.exception.NotFoundException;
 import com.luka.levi9.exception.TeamValidationException;
 import com.luka.levi9.model.Player;
 import com.luka.levi9.model.Team;
@@ -55,4 +56,10 @@ public class TeamService {
 
 		return teamRepository.save(newTeam);
 	}
+
+	public Team getTeam(String id) {
+		return teamRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Team with id " + id + " not found."));
+	}
+
 }
