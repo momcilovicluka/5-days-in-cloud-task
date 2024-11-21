@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import com.luka.levi9.common.exception.NotFoundException;
 import com.luka.levi9.common.exception.ValidationException;
 import com.luka.levi9.match.MatchRepository;
 import com.luka.levi9.match.MatchRequest;
@@ -20,7 +19,7 @@ import com.luka.levi9.team.TeamRepository;
 import jakarta.persistence.EntityManager;
 
 @SpringJUnitConfig
-public class MatchServiceTest {
+class MatchServiceTest {
 
 	@Mock
 	private MatchRepository matchRepository;

@@ -15,6 +15,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +33,7 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name = "id", updatable = false, nullable = false)
 	private String id;
+	@NotBlank(message = "Nickname is mandatory")
 	private String nickname;
 	private int wins;
 	private int losses;

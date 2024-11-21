@@ -1,7 +1,7 @@
 package com.luka.levi9.match;
 
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +9,13 @@ import lombok.Setter;
 @Setter
 public class MatchRequest {
 
-	@NotNull(message = "Team1 ID cannot be null")
+	@NotBlank(message = "Team1 ID cannot be null")
 	private String team1Id;
 
-	@NotNull(message = "Team2 ID cannot be null")
+	@NotBlank(message = "Team2 ID cannot be null")
 	private String team2Id;
 
+	@NotBlank(message = "Winning team ID cannot be null")
 	private String winningTeamId;
 
 	@Min(value = 1, message = "Duration must be at least 1 hour")

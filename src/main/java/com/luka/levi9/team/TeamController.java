@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -17,7 +18,7 @@ public class TeamController {
 	private final TeamService teamService;
 
 	@PostMapping()
-	public Team createTeam(@RequestBody TeamCreationRequest request) {
+	public Team createTeam(@Valid @RequestBody TeamCreationRequest request) {
 		return teamService.createTeam(request);
 	}
 

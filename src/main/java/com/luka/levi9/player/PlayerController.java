@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -17,10 +18,9 @@ import lombok.AllArgsConstructor;
 public class PlayerController {
 
 	private final PlayerService playerService;
-	
 
 	@PostMapping("/create")
-	public Player createPlayer(@RequestBody Player player) {
+	public Player createPlayer(@Valid @RequestBody Player player) {
 		return playerService.createPlayer(player);
 	}
 
