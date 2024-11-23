@@ -36,12 +36,18 @@ public class Player {
 	private String nickname;
 	private int wins;
 	private int losses;
-	private double elo;
+	private int elo;
 	private int hoursPlayed;
-	private int ratingAdjustment = 50;
+	@JsonIgnore
+	private int ratingAdjustment;
 	@ManyToOne
 	@JsonIgnore
 	private Team team;
+
+	@JsonProperty("ratingAdjustment")
+	public Integer getRatingAdjustment() {
+		return ratingAdjustment == 0 ? null : ratingAdjustment;
+	}
 
 	@JsonProperty("teamId")
 	public String getTeamId() {
